@@ -1,16 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void dfs(int &node,vector<int>&vis,vector<vector<int>>&adj,stack<int>&st){
-        if(vis[node]==-1){
-            vis[node]=1;
-            for(int i:adj[node]){
-                dfs(i,vis,adj,st);
-            }
-            st.push(node);
-        }
-}
-
 vector<int> topoSort(int V, vector<vector<int>>& edges) {
     vector<int>vis(V,-1);
     vector<vector<int>>adj(V);
