@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void dfs(int &node,vector<int>&vis,vector<vector<int>>&adj,stack<int>&st){
+        if(vis[node]==-1){
+            vis[node]=1;
+            for(int i:adj[node]){
+                dfs(i,vis,adj,st);
+            }
+            st.push(node);
+        }
+}
+
+vector<int> topoSort(int V, vector<vector<int>>& edges) {
+        vector<int>vis(V,-1);
+        vector<vector<int>>adj(V);
+        for(auto a:edges){
+            adj[a[0]].push_back(a[1]);
+        }
+        stack<int>st;
+        for(int i=0;i<V;i++){
+            if(vis[i]==-1){
+                dfs(i,vis,adj,st);
+            }
+        }
+        vector<int>y;
+        while(!st.empty()){
+            y.push_back(st.top());
+            st.pop();
+        }
+        return y;
+}
+
+int main() {
+	
+	int V=4,E=3;
+	vector<vector<int>>edges={{3,0},{1,0},{2,0}};
+	vector<int>topo=topoSort(V,edges);
+	for(int i:topo){
+	    cout<<i<<" ";
+	}
+	cout<<endl;
+
+}
